@@ -15,8 +15,8 @@ int			ft_printf(char *format, ...)
 		{
 			ft_putchar(*format);
 			number_of_printed_characters++;
+			format++;
 		}
-		format++;
 	}
 	va_end(arguments);
 	return (number_of_printed_characters);
