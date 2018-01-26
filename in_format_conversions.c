@@ -16,7 +16,7 @@ bool	in_format_conversions(char c)
 {
 	char *all_format_conversions;
 
-	all_format_conversions = "sSpdDioOuUxXcC";
+	all_format_conversions = "sSpdDioOuUxXcC%";
 	while (*all_format_conversions)
 	{
 		if (c == *all_format_conversions)
