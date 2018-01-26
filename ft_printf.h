@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 09:42:58 by hiroshius         #+#    #+#             */
-/*   Updated: 2018/01/26 09:42:58 by hiroshius        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -60,4 +48,5 @@ void			print_o(t_bag *bag, va_list args, int *i);
 void			print_u(t_bag *bag, va_list args, int *i);
 void			print_x(t_bag *bag, va_list args, int *i);
 void			print_c(t_bag *bag, va_list args, int *i);
+void			print_percent(t_bag *bag, va_list args, int *i);
 #endif
