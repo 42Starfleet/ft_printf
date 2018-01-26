@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 09:42:50 by hiroshius         #+#    #+#             */
-/*   Updated: 2018/01/26 09:42:52 by hiroshius        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 // Tutorial function on how to use va_list for functions with variable arguments.
@@ -81,15 +69,17 @@ int main()
 	char *str = 0;
 	char pad_character = 0;
 
+	/*
 	printf("***********************HANDLE_PERCENT PARSING TESTS***************************\n");
 	printf("For these parsing tests to work, make sure to remember to set return type from \"void\" to \"t_bag *\" on function \"handle_percent\". Set it back to void when you are done.\n");
 
-	/*
+	
 	format = "%+d";
 	printf("%s\n", format);
 	bag = handle_percent(&format, dummy, &number_of_printed_characters);
 	expected = "1";
 	printf("PLUS FLAG IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->plus, expected);
+	expected = "d";
 	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
 	printf("\n");
 
@@ -98,14 +88,16 @@ int main()
 	bag = handle_percent(&format, dummy, &number_of_printed_characters);
 	expected = "1";
 	printf("MINUS FLAG IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->minus, expected);
+	expected = "d";
 	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
 	printf("\n");
 
 	format = "%-d";
 	printf("%s\n", format);
 	bag = handle_percent(&format, dummy, &number_of_printed_characters);
-	expected = "d";
+	expected = "1";
 	printf("MINUS FLAG IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->minus, expected);
+	expected = "d";
 	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
 	printf("\n");
 
@@ -206,6 +198,21 @@ int main()
 	expected = "d";
 	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
 	expected = "H";
+	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
+	printf("\n");
+
+	format = "%3.3%asdf";
+	printf("%s\n", format);
+	bag = handle_percent(&format, dummy, &number_of_printed_characters);
+	expected = "3";
+	printf("MINIMUM FIELD WIDTH IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->width, expected);
+	expected = "3";
+	printf("PRECISION IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->precision, expected);
+	expected = "";
+	printf("LENGTH_MODIFIER IS: %s, RESULT IS SUPPOSED TO BE: %s\n", bag->length_modifier, expected);
+	expected = "%";
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	expected = "a";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
 

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   handle_percent.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 00:47:00 by hiroshius         #+#    #+#             */
-/*   Updated: 2018/01/26 00:47:00 by hiroshius        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 /*
@@ -93,7 +81,8 @@
 **	number for a signed format. A "+" overrides a space if both are used.
 */
 
-static void	parse_length_modifier(t_bag *bag, char **format)
+static void	parse_length_modifier(t_bag *bag, char **format,
+									char **length_modifiers)
 {
 	char	*format_pointer;
 	char	*copy;
@@ -105,11 +94,16 @@ static void	parse_length_modifier(t_bag *bag, char **format)
 	while (copy[i] && !in_format_conversions(copy[i]))
 		i++;
 	copy[i] = '\0';
-	bag->length_modifier = ft_strdup(copy);
-	free(copy);
-	*format = &(*format)[i];
+	if (in_length_modifiers(length_modifiers, copy))
+	{
+		bag->length_modifier = ft_strdup(copy);
+		free(copy);
+		*format = &(*format)[i];
+	}
 }
 
+// t_bag return type is for unit_tests in main.c with handle_percent only
+//t_bag		*handle_percent(char **format, va_list args, int *i)
 void		handle_percent(char **format, va_list args, int *i)
 {
 	char	**length_modifiers;
@@ -132,9 +126,10 @@ void		handle_percent(char **format, va_list args, int *i)
 				(bag->precision = ft_atoi(format_pointer)))
 			while (in_precision(*format_pointer))
 				format_pointer++;
-	parse_length_modifier(bag, &format_pointer);
+	parse_length_modifier(bag, &format_pointer, length_modifiers);
 	if (in_format_conversions(*format_pointer))
 		bag->type = *format_pointer++;
 	print_format_conversion(bag, args, i);
 	*format = format_pointer;
+//	return (bag);
 }
