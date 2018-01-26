@@ -215,7 +215,7 @@ int main()
 	expected = "a";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
-
+	*/
 	printf("***********************PAD_LEFT TESTS***************************\n");
 	str = "TEST";
 	n = 5;
@@ -275,5 +275,4 @@ int main()
 	n = 5;
 	expected = "";
 	printf("CUT_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, cut_right(str, n), expected);
-	*/
 }
