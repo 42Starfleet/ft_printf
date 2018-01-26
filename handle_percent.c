@@ -82,11 +82,11 @@
 */
 
 static void	parse_length_modifier(t_bag *bag, char **format,
-									char **length_modifiers)
+		char **length_modifiers)
 {
 	char	*format_pointer;
 	char	*copy;
-	int i;
+	int	i;
 
 	format_pointer = *format;
 	copy = ft_strdup(format_pointer);
