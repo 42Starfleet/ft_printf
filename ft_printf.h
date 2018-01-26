@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/26 09:42:58 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/26 09:42:58 by hiroshius        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -36,6 +48,10 @@ bool			in_minimum_field_width(char c);
 bool			in_precision(char c);
 void			print_format_conversion(t_bag *bag, va_list args, int *i);
 void			initialize_t_bag_variables(t_bag *bag);
+char			*pad_left(char *str, int n, char c);
+char			*pad_right(char *str, int n, char c);
+char			*cut_left(char *str, int n);
+char			*cut_right(char *str, int n);
 void			print_s(t_bag *bag, va_list args, int *i);
 void			print_p(t_bag *bag, va_list args, int *i);
 void			print_d(t_bag *bag, va_list args, int *i);
