@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 00:47:09 by hiroshius         #+#    #+#             */
-/*   Updated: 2018/01/26 00:47:11 by hiroshius        ###   ########.fr       */
+/*   Created: 2018/01/26 09:42:50 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/26 09:42:52 by hiroshius        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,11 @@ int main()
 	t_bag *bag = 0;
 	char *format = 0;
 	int	number_of_printed_characters = 0;
+	int n = 0;
 	va_list dummy;
-	char *expected;
+	char *expected = 0;
+	char *str = 0;
+	char pad_character = 0;
 
 	printf("***********************HANDLE_PERCENT PARSING TESTS***************************\n");
 	printf("For these parsing tests to work, make sure to remember to set return type from \"void\" to \"t_bag *\" on function \"handle_percent\". Set it back to void when you are done.\n");
@@ -187,7 +190,7 @@ int main()
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
 
-	format = "%03.5hhdHello";
+	format = "%03.5zdHello";
 	printf("%s\n", format);
 	bag = handle_percent(&format, dummy, &number_of_printed_characters);
 	expected = "0";
@@ -198,12 +201,72 @@ int main()
 	printf("MINIMUM FIELD WIDTH IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->width, expected);
 	expected = "5";
 	printf("PRECISION IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->precision, expected);
-	expected = "hh";
+	expected = "z";
 	printf("LENGTH_MODIFIER IS: %s, RESULT IS SUPPOSED TO BE: %s\n", bag->length_modifier, expected);
 	expected = "d";
 	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
 	expected = "H";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
+
+	printf("***********************PAD_LEFT TESTS***************************\n");
+	str = "TEST";
+	n = 5;
+	pad_character = ' ';
+	expected = " TEST";
+	printf("PAD_LEFT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, pad_left(str, n, pad_character), expected);
+
+	str = "100";
+	n = 10;
+	pad_character = '0';
+	expected = "0000000100";
+	printf("PAD_LEFT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, pad_left(str, n, pad_character), expected);
+
+	str = "100";
+	n = 3;
+	pad_character = '0';
+	expected = "100";
+	printf("PAD_LEFT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, pad_left(str, n, pad_character), expected);
+
+	printf("***********************PAD_RIGHT TESTS***************************\n");
+	str = "TEST";
+	n = 5;
+	pad_character = '0';
+	expected = "TEST0";
+	printf("PAD_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, pad_right(str, n, pad_character), expected);
+
+	str = "100";
+	n = 10;
+	pad_character = ' ';
+	expected = "100       ";
+	printf("PAD_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, pad_right(str, n, pad_character), expected);
+
+	str = "100";
+	n = 3;
+	pad_character = '0';
+	expected = "100";
+	printf("PAD_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, pad_right(str, n, pad_character), expected);
+
+	printf("***********************CUT_LEFT TESTS***************************\n");
+	str = "100";
+	n = 2;
+	expected = "0";
+	printf("CUT_LEFT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, cut_left(str, n), expected);
+
+	str = "100";
+	n = 5;
+	expected = "";
+	printf("CUT_LEFT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, cut_left(str, n), expected);
+
+	printf("***********************CUT_RIGHT TESTS***************************\n");
+	str = "100";
+	n = 2;
+	expected = "1";
+	printf("CUT_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, cut_right(str, n), expected);
+
+	str = "100";
+	n = 5;
+	expected = "";
+	printf("CUT_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, cut_right(str, n), expected);
 	*/
 }
