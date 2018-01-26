@@ -86,7 +86,7 @@ static void	parse_length_modifier(t_bag *bag, char **format,
 {
 	char	*format_pointer;
 	char	*copy;
-	int	i;
+	int		i;
 
 	format_pointer = *format;
 	copy = ft_strdup(format_pointer);
@@ -128,7 +128,7 @@ void		handle_percent(char **format, va_list args, int *i)
 				format_pointer++;
 	parse_length_modifier(bag, &format_pointer, length_modifiers);
 	if (in_format_conversions(*format_pointer))
-		bag->type = *format_pointer++;
+		bag->format_conversion = *format_pointer++;
 	print_format_conversion(bag, args, i);
 	*format = format_pointer;
 //	return (bag);

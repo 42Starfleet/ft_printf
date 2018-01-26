@@ -80,7 +80,7 @@ int main()
 	expected = "1";
 	printf("PLUS FLAG IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->plus, expected);
 	expected = "d";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	printf("\n");
 
 	format = "%-d";
@@ -89,7 +89,7 @@ int main()
 	expected = "1";
 	printf("MINUS FLAG IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->minus, expected);
 	expected = "d";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	printf("\n");
 
 	format = "%-d";
@@ -98,7 +98,7 @@ int main()
 	expected = "1";
 	printf("MINUS FLAG IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->minus, expected);
 	expected = "d";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	printf("\n");
 
 	format = "%+300.400Xd";
@@ -113,7 +113,7 @@ int main()
 	expected = "400";
 	printf("PRECISION IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->precision, expected);
 	expected = "X";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	expected = "d";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
@@ -128,7 +128,7 @@ int main()
 	expected = "400";
 	printf("PRECISION IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->precision, expected);
 	expected = "X";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	expected = "d";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
@@ -143,7 +143,7 @@ int main()
 	expected = "-1";
 	printf("PRECISION IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->precision, expected);
 	expected = "X";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	expected = "d";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
@@ -158,7 +158,7 @@ int main()
 	expected = "-1";
 	printf("PRECISION IS: %d, RESULT IS SUPPOSED TO BE: %s\n", bag->precision, expected);
 	expected = "D";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	expected = "d";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
@@ -177,7 +177,7 @@ int main()
 	expected = "hh";
 	printf("LENGTH_MODIFIER IS: %s, RESULT IS SUPPOSED TO BE: %s\n", bag->length_modifier, expected);
 	expected = "d";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	expected = "H";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
@@ -196,7 +196,7 @@ int main()
 	expected = "z";
 	printf("LENGTH_MODIFIER IS: %s, RESULT IS SUPPOSED TO BE: %s\n", bag->length_modifier, expected);
 	expected = "d";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	expected = "H";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
@@ -211,7 +211,7 @@ int main()
 	expected = "";
 	printf("LENGTH_MODIFIER IS: %s, RESULT IS SUPPOSED TO BE: %s\n", bag->length_modifier, expected);
 	expected = "%";
-	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->type, expected);
+	printf("TYPE IS: %c, RESULT IS SUPPOSED TO BE: %s\n", bag->format_conversion, expected);
 	expected = "a";
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");

@@ -19,7 +19,7 @@ typedef struct	s_bag
 	int			width;
 	int			precision;
 	char		*length_modifier;
-	char		type;
+	char		format_conversion;
 }				t_bag;
 
 int				ft_printf(char *format, ...);

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_format_conversion.c                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/26 00:46:42 by hiroshius         #+#    #+#             */
-/*   Updated: 2018/01/26 00:47:16 by hiroshius        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
 /*
@@ -77,20 +65,20 @@
 
 void	print_format_conversion(t_bag *bag, va_list args, int *i)
 {
-	if (bag->type == 's' || bag->type == 'S')
+	if (bag->format_conversion == 's' || bag->format_conversion == 'S')
 		print_s(bag, args, i);
-	if (bag->type == 'p')
+	if (bag->format_conversion == 'p')
 		print_p(bag, args, i);
-	if (bag->type == 'd' || bag->type == 'D')
+	if (bag->format_conversion == 'd' || bag->format_conversion == 'D')
 		print_d(bag, args, i);
-	if (bag->type == 'i')
+	if (bag->format_conversion == 'i')
 		print_i(bag, args, i);
-	if (bag->type == 'o' || bag->type == 'O')
+	if (bag->format_conversion == 'o' || bag->format_conversion == 'O')
 		print_o(bag, args, i);
-	if (bag->type == 'u' || bag->type == 'U')
+	if (bag->format_conversion == 'u' || bag->format_conversion == 'U')
 		print_u(bag, args, i);
-	if (bag->type == 'x' || bag->type == 'X')
+	if (bag->format_conversion == 'x' || bag->format_conversion == 'X')
 		print_x(bag, args, i);
-	if (bag->type == 'c' || bag->type == 'C')
+	if (bag->format_conversion == 'c' || bag->format_conversion == 'C')
 		print_c(bag, args, i);
 }
