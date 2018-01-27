@@ -1,3 +1,4 @@
+#include "test_printf.h"
 #include "ft_printf.h"
 
 // Tutorial function on how to use va_list for functions with variable arguments.
@@ -68,7 +69,8 @@ int main()
 	char *expected = 0;
 	char *str = 0;
 	char pad_character = 0;
-
+	
+	test_printfd();
 	/*
 	printf("***********************HANDLE_PERCENT PARSING TESTS***************************\n");
 	printf("For these parsing tests to work, make sure to remember to set return type from \"void\" to \"t_bag *\" on function \"handle_percent\". Set it back to void when you are done.\n");
@@ -216,7 +218,7 @@ int main()
 	printf("FORMAT_POINTER IS AT CHARACTER: %c, RESULT IS SUPPOSED TO BE: %s\n", *format, expected);
 	printf("\n");
 	*/
-	printf("***********************PAD_LEFT TESTS***************************\n");
+	/*printf("***********************PAD_LEFT TESTS***************************\n");
 	str = "TEST";
 	n = 5;
 	pad_character = ' ';
@@ -274,5 +276,5 @@ int main()
 	str = "100";
 	n = 5;
 	expected = "";
-	printf("CUT_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, cut_right(str, n), expected);
+	printf("CUT_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, cut_right(str, n), expected);*/
 }
