@@ -30,7 +30,7 @@ char			**set_length_modifiers(void);
 bool			in_flags(t_bag *bag, char c);
 bool			set_flags(t_bag *bag, char c);
 bool			in_format_conversions(char c);
-bool			in_length_modifiers(char **, char *);
+bool			in_length_modifiers(char **length_modifiers, char *length_modifier);
 char			**set_length_modifiers_array(void);
 bool			in_minimum_field_width(char c);
 bool			in_precision(char c);
