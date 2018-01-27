@@ -15,7 +15,10 @@ void	print_d(t_bag *bag, va_list args, int *i)
 		// TODO: add zeroes based on width
 		n = bag->width - len;
 		while (n-- > 0)
+		{
 			ft_putchar('0');
+		//	(*i)++;
+		}
 	}	
 	write(1, str, len);
 	*i += len;
