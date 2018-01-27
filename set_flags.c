@@ -18,7 +18,7 @@ bool	set_flags(t_bag *bag, char c)
 	}
 	if (c == ' ' && !bag->plus)
 		bag->space = 1;
-	if (c == '0' && bag->minus != 1 && bag->plus != 1)
+	if (c == '0' && bag->minus != 1)
 		bag->zero = 1;
 	return (1);
 }
