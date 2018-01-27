@@ -6,19 +6,25 @@
 #    By: husui <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 10:04:33 by husui             #+#    #+#              #
-#    Updated: 2018/01/25 16:15:41 by hiroshius        ###   ########.fr        #
+#    Updated: 2018/01/26 22:01:06 by scamargo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_printf.out
+LIB	= libft.a
 
 all: $(NAME)
 
 $(NAME):
-	@gcc -c -Wall -Werror -Wextra libft/*.c -I libft/libft.h
-	@ar -q libft/libft.a *.o
 	@gcc -Llibft -lft *.c -o ft_printf.out
 
+%.o: %.c
+	@gcc -Llibft -lft $< -o ft_printf.out
+
+$(LIB):
+	@gcc -c -Wall -Werror -Wextra libft/*.c -I libft/libft.h
+	@ar -q libft/$(LIB) *.o
+ 
 clean:
 	@rm -rf *.o *.a libft/*.a libft/*.o
 
