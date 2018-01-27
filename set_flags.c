@@ -13,8 +13,6 @@ bool	set_flags(t_bag *bag, char c)
 	if (c == '+')
 	{
 		bag->plus = 1;
-		if (bag->zero == 1)
-			bag->zero = 0;
 		if (bag->space == 1)
 			bag->space = 0;
 	}
