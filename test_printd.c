@@ -6,12 +6,12 @@ void test_printfd()
 	int n;
 	int s;
 
-	n = ft_printf("%d\n", 0);
-	printf("result: %d\n", n);
+//	n = ft_printf("%d\n", 0);
+//	printf("result: %d\n", n);
 
 //	n = ft_printf("%#d\n", 1);
 //	printf("Number sign: %#d\n", 1);
-
+/*
 	printf("0 flag with no min width\n");
 	printf("EXPECTED: '%0d'\n", 45);
 	ft_printf("RESULT: '%0d'\n", 45);
@@ -24,5 +24,18 @@ void test_printfd()
 	printf("Width: %5.4d\n", 235);
 	printf("Width: %04d\n", 245);
 	printf("Width: %4d\n", 267);
+*/
+//	n = ft_printf("%x\n", 0);
+//	printf("result: %x\n", n);
 
+//	n = ft_printf("%#d\n", 1);
+//	printf("Number sign: %#d\n", 1);
+
+	printf("beginning test for ft_printf with x conversion\n\n\n\n");
+
+	int len2 = 0;
+	n = printf("%x\n", 255);
+	ft_putchar('\n');
+	len2 = ft_printf("%x\n", 255);	
+	printf("n -> %d\t n2 -> %d\n", n, len2);
 }
