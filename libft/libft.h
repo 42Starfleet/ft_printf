@@ -6,7 +6,7 @@
 /*   By: husui <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 16:05:41 by husui             #+#    #+#             */
-/*   Updated: 2017/12/04 19:48:43 by husui            ###   ########.fr       */
+/*   Updated: 2018/01/27 21:31:48 by lhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+char				*ft_strrev(char *str);
 char				*ft_itoa(int n);
 char				*ft_strcat(char *restrict s1, const char *restrict s2);
 char				*ft_strchr(const char *s, int c);
