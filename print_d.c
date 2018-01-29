@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	print_d(t_bag *bag, va_list args, int *i)
 {
@@ -10,14 +11,14 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	len = ft_strlen(str);
 	// increase count by number of characters printed
 	// if precision not given, and zero flag on
-	if (bag->precision == -1 && bag->zero)
+	if (!bag->precision && bag->zero)
 	{
 		// TODO: add zeroes based on width
 		n = bag->width - len;
 		while (n-- > 0)
 		{
 			ft_putchar('0');
-		//	(*i)++;
+			(*i)++;
 		}
 	}	
 	write(1, str, len);
