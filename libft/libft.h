@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: husui <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: husui <husui@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 16:05:41 by husui             #+#    #+#             */
-/*   Updated: 2018/01/27 21:31:48 by lhernand         ###   ########.fr       */
+/*   Updated: 2018/01/29 00:04:19 by ztisnes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 char				*ft_strrev(char *str);
 char				*ft_itoa(int n);
+char				*ft_itoa2(int n);
+char				*ft_itoa_base(int n, int base);
 char				*ft_strcat(char *restrict s1, const char *restrict s2);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strcpy(char *dst, const char *src);

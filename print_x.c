@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhernand <lhernand@student.42.us.or>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 21:35:15 by lhernand          #+#    #+#             */
-/*   Updated: 2018/01/29 00:39:38 by lhernand         ###   ########.fr       */
+/*   Created: 2018/01/29 00:42:19 by lhernand          #+#    #+#             */
+/*   Updated: 2018/01/29 00:42:32 by lhernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void			print_x(t_bag *bag, va_list args, int *i)
 //	str = ft_itoa(va_arg(args, long));
 	printf("%d\n", test);
 	str = ft_itoa(test);
+
+	str = ft_itoa(va_arg(args, long));
 	len = ft_strlen(str);
 	printf("sting right here -> %s\n", str);
 	res = print_hex(str, &len, bag, test);

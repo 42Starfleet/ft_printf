@@ -5,7 +5,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	char	*str;
 	int		len;
 	int		n;
-	
+
 	str = ft_itoa(va_arg(args, long));
 	len = ft_strlen(str);
 	// increase count by number of characters printed
@@ -19,7 +19,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 			ft_putchar('0');
 		//	(*i)++;
 		}
-	}	
+	}
 	write(1, str, len);
 	*i += len;
 }
