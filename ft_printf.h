@@ -1,6 +1,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+#include "libft/libft.h"
+
 /* Define colors (Part of bonus) */
 # define KNRM		"\x1B[0m"
 # define RED		"\x1B[31m"
