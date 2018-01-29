@@ -17,4 +17,23 @@ void	print_o(t_bag *bag, va_list args, int *i)
 			2) Increment your iteration
 		-> Result with *i and tmp
 	*/
+
+	// unsigned long	tmp;
+	// unsigned long	len;
+	//
+	// while (bag->format_conversion == 'o' || bag->format_conversion == 'O')
+	// {
+	// 	tmp =
+	// }
+}
+
+int		main()
+{
+	int	number;
+
+	number = -1;
+	printf("PRINTF OCTAL w/ 'o': %o\n", number);
+	printf("PRINTF OCTAL w/ 'O': %O\n", number);
+	// ft_printf("FT_PRINTF OCTAL w/ 'o': %o\n", number);
+	// ft_printf("FT_PRINTF OCTAL w/ 'O': %O\n", number);
 }
