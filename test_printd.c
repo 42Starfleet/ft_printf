@@ -31,11 +31,11 @@ void test_printfd()
 //	n = ft_printf("%#d\n", 1);
 //	printf("Number sign: %#d\n", 1);
 
-	printf("beginning test for ft_printf with x conversion\n\n\n\n");
+	printf("beginning test for ft_printf with octal conversion\n\n\n\n");
 
 	int len2 = 0;
-	n = printf("%x\n", 255);
+	n = printf("%lo\n", 4294967286);
 	ft_putchar('\n');
-	len2 = ft_printf("%x\n", 255);	
+	len2 = ft_printf("TEST: %o\n", 4294967286 );	
 	printf("n -> %d\t n2 -> %d\n", n, len2);
 }

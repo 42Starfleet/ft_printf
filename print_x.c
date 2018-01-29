@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_x.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhernand <lhernand@student.42.us.or>       +#+  +:+       +#+        */
+/*   By: lhernand <lhernand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 21:35:15 by lhernand          #+#    #+#             */
-/*   Updated: 2018/01/28 01:20:37 by lhernand         ###   ########.fr       */
+/*   Updated: 2018/01/28 22:26:05 by ztisnes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			print_x(t_bag *bag, va_list args, int *i)
 	int len;
 	char *str;
 	char *res;
-	
+
 	str = ft_itoa(va_arg(args, long));
 	len = ft_strlen(str);
 	res = print_hex(str, &len);
