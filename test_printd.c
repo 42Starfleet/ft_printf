@@ -31,11 +31,10 @@ void test_printfd()
 //	n = ft_printf("%#d\n", 1);
 //	printf("Number sign: %#d\n", 1);
 
-	printf("beginning test for ft_printf with x conversion\n\n\n\n");
-
 	int len2 = 0;
-	n = printf("%x\n", 255);
-	ft_putchar('\n');
-	len2 = ft_printf("%x\n", 255);	
-	printf("n -> %d\t n2 -> %d\n", n, len2);
+	len2 = ft_printf("%x\t%X\t%#x\t%#X this is s1\n", -10, 255, 255, 255);
+	n = printf("%x\t%X\t%#x\t%#X this is s2\n", -10, 255, 255, 255);
+	printf("n -> %d\tn2 -> %d\n", n, len2);
+	ft_printf("TESTING: %#x\n", 123456789123456789);
+
 }
