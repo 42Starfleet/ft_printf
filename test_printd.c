@@ -8,30 +8,25 @@ void test_printfd()
 	int s;
 	int test;
 
-	s = 0;
-	//n = ft_printf("%d\n", 0);
-	//printf("result: %d\n", n);
+	printf("0 flag with min width > num width\n");
+	n = printf("EXPECTED: '%04d'\n", 22);
+	s= ft_printf("ACTUAL: '%04d'\n", 22);
+	printf("EXPECTED return: %d\n", n);
+	printf("ACTUAL return: %d\n", s); 
+	n = ft_printf("Width: %3.3d\n", 2);
+	printf("Width: %5.4d\n", 235);
+	printf("Width: %04d\n", 245);
+	printf("Width: %4d\n", 267);
+
+	//	n = ft_printf("%x\n", 0);
+//	printf("result: %x\n", n);
 
 //	n = ft_printf("%#d\n", 1);
 //	printf("Number sign: %#d\n", 1);
 
-	/*printf("------------------\n");
-	printf("0 flag with no min width\n");
-	printf("EXPECT: '%0d'\n", 45);
-	ft_printf("RESULT: '%0d'\n", 45);
-	printf("------------------\n");
-	printf("'0' flag with min width > num width\n");
-	n = printf("EXPECT: '%04d', ", 22);
-	printf("R: %d\n", n);
-	s= ft_printf("ACTUAL: '%04d', ", 22);
-	printf("R: %d\n", s);
-	printf("------------------\n");
-	printf("'-' flag with no min width\n");
-	test = 33;
-	printf("EXPECT: \'%-d\', R: %zu\n", test, ft_strlen(ft_itoa(test)));
-	ft_printf("ACTUAL: \'");*/
-	test = 33;
-	ft_putstr("print 33: ");
-	s = ft_printf("%d", test);
-	//printf("# of printed: %d\n", s); 
+	int len2 = 0;
+	len2 = ft_printf("%x\t%X\t%#x\t%#X this is s1\n", -10, 255, 255, 255);
+	n = printf("%x\t%X\t%#x\t%#X this is s2\n", -10, 255, 255, 255);
+	printf("n -> %d\tn2 -> %d\n", n, len2);
+	ft_printf("TESTING: %#x\n", 123456789123456789);
 }
