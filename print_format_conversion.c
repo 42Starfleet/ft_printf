@@ -69,10 +69,8 @@ void	print_format_conversion(t_bag *bag, va_list args, int *i)
 		print_s(bag, args, i);
 	if (bag->format_conversion == 'p')
 		print_p(bag, args, i);
-	if (bag->format_conversion == 'd' || bag->format_conversion == 'D')
+	if (bag->format_conversion == 'd' || bag->format_conversion == 'D' || bag->format_conversion == 'i')
 		print_d(bag, args, i);
-	if (bag->format_conversion == 'i')
-		print_i(bag, args, i);
 	if (bag->format_conversion == 'o' || bag->format_conversion == 'O')
 		print_o(bag, args, i);
 	if (bag->format_conversion == 'u' || bag->format_conversion == 'U')
