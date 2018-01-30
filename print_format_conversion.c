@@ -81,4 +81,6 @@ void	print_format_conversion(t_bag *bag, va_list args, int *i)
 		print_x(bag, args, i);
 	if (bag->format_conversion == 'c' || bag->format_conversion == 'C')
 		print_c(bag, args, i);
+	if (bag->format_conversion == '%')
+		print_percent(bag, args, i);
 }
