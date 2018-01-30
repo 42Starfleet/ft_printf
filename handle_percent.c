@@ -110,22 +110,23 @@ void		handle_percent(char **format, va_list args, int *i)
 	char	*format_pointer;
 	t_bag	*bag;
 
-	format_pointer = *format;
+	format_pointer = ++(*format);
 	length_modifiers = set_length_modifiers_array();
 	bag = malloc(sizeof(t_bag));
 	initialize_t_bag_variables(bag);
-	format_pointer++;
 	while (in_flags(bag, *format_pointer) && set_flags(bag, *format_pointer))
 		format_pointer++;
 	if (in_minimum_field_width(*format_pointer))
 		bag->width = ft_atoi(format_pointer);
 	while (in_minimum_field_width(*format_pointer))
 		format_pointer++;
-	if (*format_pointer == '.' && format_pointer++)
-		if (in_precision(*format_pointer) &&
-				(bag->precision = ft_atoi(format_pointer)))
+	if (*format_pointer == '.' && (bag->period = 1) && format_pointer++)
+		if (in_precision(*format_pointer))
+		{
+			bag->precision = ft_atoi(format_pointer);
 			while (in_precision(*format_pointer))
 				format_pointer++;
+		}
 	parse_length_modifier(bag, &format_pointer, length_modifiers);
 	if (in_format_conversions(*format_pointer))
 		bag->format_conversion = *format_pointer++;
