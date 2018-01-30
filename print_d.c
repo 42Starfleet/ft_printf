@@ -6,9 +6,16 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	char	*str;
 	int		len;
 	int		n;
-	int		num;
+	long	num;
 
-	str = ft_itoa((num = va_arg(args, long)));
+	num = va_arg(args, long);
+	if (ft_strlen(bag->length_modifier) == 0)
+		num = (int)num;
+	else if (!ft_strcmp(bag->length_modifier, "h"))
+		num = (short)num;
+	else if (!ft_strcmp(bag->length_modifier, "hh"))
+		num = (signed char)num;
+	str = ft_itoa(num);
 	len = ft_strlen(str);
 	n = bag->width - len;
 	if (!bag->minus && (bag->precision || !bag->zero))

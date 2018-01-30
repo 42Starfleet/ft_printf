@@ -6,7 +6,7 @@
 #    By: husui <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 10:04:33 by husui             #+#    #+#              #
-#    Updated: 2018/01/29 20:43:56 by scamargo         ###   ########.fr        #
+#    Updated: 2018/01/30 15:12:07 by scamargo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME) 
 
-$(NAME):
-	#ADD FLAGS!!
+$(NAME): $(LIB)
 	@gcc -c $(SRCS)
 	@ar -q $(NAME) *.o
 
