@@ -18,7 +18,8 @@ void	print_d(t_bag *bag, va_list args, int *i)
 		num = (signed char)num;
 	else if (!ft_strcmp(bag->length_modifier, "l"))
 		num = (long)num;
-	else if (!ft_strcmp(bag->length_modifier, "ll"))
+	else if (!ft_strcmp(bag->length_modifier, "ll") || 
+			ft_strcmp(bag->length_modifier, "z"))
 		num = (long long)num;
 	str = ft_intmax_toa(num); 
 	len = ft_strlen(str);
