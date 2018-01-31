@@ -55,5 +55,6 @@ void			print_percent(t_bag *bag, va_list args, int *i);
 int				power_i(int number, int exponent);
 long			power_l(long number, int exponent);
 char			*ft_ltoa(long n);
+char			*ft_intmax_toa(intmax_t num);
 
 #endif

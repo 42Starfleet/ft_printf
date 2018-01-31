@@ -1,21 +1,26 @@
 #include "ft_printf.h"
 #include <stdio.h>
+#include <inttypes.h>
 
 void	print_d(t_bag *bag, va_list args, int *i)
 {
-	char	*str;
-	int		len;
-	int		n;
-	long	num;
+	char		*str;
+	int			len;
+	int			n;
+	intmax_t	num;
 
-	num = va_arg(args, long);
+	num = va_arg(args, intmax_t);
 	if (ft_strlen(bag->length_modifier) == 0)
 		num = (int)num;
 	else if (!ft_strcmp(bag->length_modifier, "h"))
 		num = (short)num;
 	else if (!ft_strcmp(bag->length_modifier, "hh"))
 		num = (signed char)num;
-	str = ft_itoa(num);
+	else if (!ft_strcmp(bag->length_modifier, "l"))
+		num = (long)num;
+	else if (!ft_strcmp(bag->length_modifier, "ll"))
+		num = (long long)num;
+	str = ft_intmax_toa(num); 
 	len = ft_strlen(str);
 	n = bag->width - len;
 	if (!bag->minus && (bag->precision || !bag->zero))
@@ -65,4 +70,5 @@ void	print_d(t_bag *bag, va_list args, int *i)
 		(*i)++;
 	}
 	*i += len;
+	// TODO: see why you cant free str
 }
