@@ -24,9 +24,11 @@ void	print_d(t_bag *bag, va_list args, int *i)
 		num = (long long)num;
 	str = ft_intmax_toa(num); 
 	len = ft_strlen(str);
-	p = (bag->precision - len > 0) ? bag->precision - len : 0; //TODO: this not working
+	len -= (num < 0) ? 1 : 0;
+	p = (bag->precision - len > 0) ? bag->precision - len : 0; //TODO: handle zero precision
 	n = bag->width - len - p;
-	n -= (bag->plus && num >= 0) ? 1 : 0;
+	//n -= (bag->plus && num >= 0) ? 1 : 0;
+	n -= (bag->plus || num < 0) ? 1 : 0;
 	if (!bag->minus && (bag->precision || !bag->zero))
 	{
 		while (n-- > 0)
@@ -39,7 +41,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	{
 		ft_putchar('-');
 		str++;
-		len--;
+		//len--;
 		(*i)++;
 	}
 	else	

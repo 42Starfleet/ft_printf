@@ -8,10 +8,10 @@ void test_printfd()
 	int s;
 	int test;
 
-	s = ft_printf("'%03.2d'", 0);
+	s = ft_printf("'@moulitest: %.d %.0d'", 0, 0);
 	ft_printf("\nreturn: %d\n", s);
 	sleep(1);
-	printf("'%03.2d'", 0);
+	printf("@moulitest: %.d %.0d", 0, 0);
 	/*printf("0 flag with min width > num width\n");
 	n = printf("EXPECTED: '%04d'\n", 22);
 	s= ft_printf("ACTUAL: '%04d'\n", 22);
