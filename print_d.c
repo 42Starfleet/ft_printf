@@ -8,6 +8,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	int			len;
 	int			n;
 	intmax_t	num;
+	int			p;
 
 	num = va_arg(args, intmax_t);
 	if (ft_strlen(bag->length_modifier) == 0)
@@ -23,7 +24,9 @@ void	print_d(t_bag *bag, va_list args, int *i)
 		num = (long long)num;
 	str = ft_intmax_toa(num); 
 	len = ft_strlen(str);
-	n = bag->width - len;
+	p = (bag->precision - len > 0) ? bag->precision - len : 0; //TODO: this not working
+	n = bag->width - len - p;
+	n -= (bag->plus && num >= 0) ? 1 : 0;
 	if (!bag->minus && (bag->precision || !bag->zero))
 	{
 		while (n-- > 0)
@@ -39,15 +42,14 @@ void	print_d(t_bag *bag, va_list args, int *i)
 		len--;
 		(*i)++;
 	}
-	else
+	else	
 	{
 		if (bag->plus)
 		{
 			ft_putchar('+');
 			(*i)++;
-			n--;
 		}
-		else if (bag->space)
+		else if (bag->space && !bag->precision)
 		{
 			ft_putchar(' ');
 			(*i)++;
@@ -55,7 +57,15 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	}
 	// increase count by number of characters printed
 	// if precision not given, and zero flag on
-	if (!bag-> minus && !bag->precision && bag->zero)
+	if (bag->precision)
+	{
+		while (p-- > 0)
+		{
+			ft_putchar('0');
+			(*i)++;
+		}
+	}
+	else if (!bag->minus && bag->zero)
 	{
 		// TODO: add zeroes based on width
 		while (n-- > 0)

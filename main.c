@@ -1,7 +1,9 @@
 #include "ft_printf.h"
+#include "test_printf.h"
 
 int main()
 {
+	test_printfd();
 	// Emoji test.
 	//setlocale(LC_ALL,"");
     //printf("Let's go to the cantina and eat some %lc\n", 0x1F35D);
