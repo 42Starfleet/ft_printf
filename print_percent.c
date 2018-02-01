@@ -62,7 +62,7 @@
 **	_: A space specifies that a blank should be left before before a positive
 **	number for a signed format. A "+" overrides a space if both are used.
 */
-void		print_percent(t_bag *bag, va_list args, int *i)
+void		print_percent(t_bag *bag, int *i)
 {
 	char	*str;
 
