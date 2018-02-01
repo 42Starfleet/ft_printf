@@ -16,9 +16,7 @@ int			ft_printf(char *format, ...)
 {
 	va_list	arguments;
 	int		number_of_printed_characters;
-	int		i;
 
-	i = 0;
 	number_of_printed_characters = 0;
 	va_start(arguments, format);
 	while (*format)
