@@ -51,7 +51,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 			ft_putchar('+');
 			(*i)++;
 		}
-		else if (bag->space && !bag->precision)
+		else if (bag->space)
 		{
 			ft_putchar(' ');
 			(*i)++;
