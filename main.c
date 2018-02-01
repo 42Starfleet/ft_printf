@@ -228,6 +228,4 @@ int main()
 	expected = "";
 	printf("CUT_RIGHT OF %d ON %s = \"%s\", EXPECTED: \"%s\"\n", n, str, cut_right(str, n), expected);
 	*/
-
-	setlocale(LC_ALL,"");
 }
