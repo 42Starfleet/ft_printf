@@ -86,6 +86,8 @@ void			truncate_zeros(char **str);
 int				number_cmp(char *str1, char *str2);
 bool			zeroed(char *str);
 char			*stringerize(char c);
+void			test_printfd(void);
+char			*ft_intmax_toa(intmax_t num);
 
 bool			g_is_print_p;
 #endif
