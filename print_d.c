@@ -12,7 +12,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 
 	num = va_arg(args, intmax_t);
 	if (!ft_strcmp(bag->length_modifier, "l") ||
-		bag->format_conversion == 'C')
+		bag->format_conversion == 'D')
 		num = (long)num;
 	else if (ft_strlen(bag->length_modifier) == 0)
 		num = (int)num;
@@ -29,7 +29,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	p = (bag->precision - len > 0) ? bag->precision - len : 0;
 	len = (num == 0 && bag->period && bag->precision == 0) ? 0 : len;
 	n = bag->width - len - p;
-	n -= (bag->plus || num < 0) ? 1 : 0;
+	n -= (bag->plus || bag ->space || num < 0) ? 1 : 0;
 	if (!bag->minus && (bag->precision || !bag->zero))
 	{
 		while (n-- > 0)
@@ -51,7 +51,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 			ft_putchar('+');
 			(*i)++;
 		}
-		else if (bag->space && !bag->precision)
+		else if (bag->space)
 		{
 			ft_putchar(' ');
 			(*i)++;
