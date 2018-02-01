@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_percent.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 02:38:25 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/31 02:38:26 by hiroshius        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -62,6 +74,7 @@
 **	_: A space specifies that a blank should be left before before a positive
 **	number for a signed format. A "+" overrides a space if both are used.
 */
+
 void		print_percent(t_bag *bag, int *i)
 {
 	char	*str;
