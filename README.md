@@ -10,5 +10,4 @@ Read open source code and try to mimic their methods of maintaining a high level
 
 HOW TO RUN:
 1. Go to the root directory.
-2. Use
-make re; gcc -L. -lftprintf *.c; ./a.out; rm a.out
+2. make re; gcc -L. -lftprintf *.c; ./a.out; rm a.out
