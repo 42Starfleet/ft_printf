@@ -17,7 +17,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 		num = (short)num;
 	else if (!ft_strcmp(bag->length_modifier, "hh"))
 		num = (signed char)num;
-	else if (!ft_strcmp(bag->length_modifier, "l"))
+	else if (!ft_strcmp(bag->length_modifier, "l")) //TODO: make sure 'D' is processed like 'ld'
 		num = (long)num;
 	else if (!ft_strcmp(bag->length_modifier, "ll") || 
 			ft_strcmp(bag->length_modifier, "z"))
@@ -25,9 +25,9 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	str = ft_intmax_toa(num); 
 	len = ft_strlen(str);
 	len -= (num < 0) ? 1 : 0;
-	p = (bag->precision - len > 0) ? bag->precision - len : 0; //TODO: handle zero precision
+	p = (bag->precision - len > 0) ? bag->precision - len : 0;
+	len = (num == 0 && bag->period && bag->precision == 0) ? 0 : len;
 	n = bag->width - len - p;
-	//n -= (bag->plus && num >= 0) ? 1 : 0;
 	n -= (bag->plus || num < 0) ? 1 : 0;
 	if (!bag->minus && (bag->precision || !bag->zero))
 	{
@@ -41,7 +41,6 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	{
 		ft_putchar('-');
 		str++;
-		//len--;
 		(*i)++;
 	}
 	else	
@@ -57,8 +56,6 @@ void	print_d(t_bag *bag, va_list args, int *i)
 			(*i)++;
 		}
 	}
-	// increase count by number of characters printed
-	// if precision not given, and zero flag on
 	if (bag->precision)
 	{
 		while (p-- > 0)
@@ -69,7 +66,6 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	}
 	else if (!bag->minus && bag->zero)
 	{
-		// TODO: add zeroes based on width
 		while (n-- > 0)
 		{
 			ft_putchar('0');
