@@ -1,0 +1,35 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: husui <marvin@42.fr>                       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/12/11 10:04:33 by husui             #+#    #+#              #
+#    Updated: 2018/01/31 03:12:49 by hiroshius        ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libftprintf.a
+LIB	= libft.a
+
+OBJS = $(SRCS:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(LIB)
+	@gcc -Wall -Wextra -Werror -c *.c
+	@ar -q $(NAME) *.o 
+
+$(LIB):
+	@gcc -c -Wall -Werror -Wextra libft/*.c -I libft/libft.h
+	@ar -q libft/$(LIB) *.o
+
+clean:
+	@rm -rf *.o libft/*.o
+
+fclean: clean
+	@rm -rf $(NAME)
+	@rm -rf libft/$(LIB)
+
+re: fclean $(LIB) all
