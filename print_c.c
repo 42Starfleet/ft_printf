@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_c.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 02:38:03 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/31 02:38:04 by hiroshius        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -63,39 +75,49 @@
 **	number for a signed format. A "+" overrides a space if both are used.
 */
 
-void	print_c(t_bag *bag, va_list args, int *i)
+static int		print_null(t_bag *bag, int *i)
 {
-	char pad_character;
-	char c;
-	char *str;
-	wchar_t c_wide;
+	char		c;
+
+	c = 0;
+	if (!bag->minus)
+	{
+		while (--bag->width > 0 && ++(*i))
+			ft_putchar(' ');
+		write(1, &c, 1);
+		(*i)++;
+	}
+	else if (bag->minus)
+	{
+		write(1, &c, 1);
+		(*i)++;
+		while (--bag->width > 0 && ++(*i))
+			ft_putchar(' ');
+	}
+	return (1);
+}
+
+void			print_c(t_bag *bag, va_list args, int *i)
+{
+	uintmax_t	c;
+	char		pad_character;
+	char		*new;
 
 	pad_character = bag->zero ? '0' : ' ';
-	if (bag->format_conversion  == 'c')
-		c = (char)va_arg(args, void *);
-	else if (bag->format_conversion == 'C')
-		c_wide = (wchar_t)va_arg(args, void *);
-	str = malloc(sizeof(char) * 2);
-	if (c)
-		str[0] = c;
-	else if (c_wide)
-		str[0] = c_wide;
+	new = "";
+	if (bag->format_conversion == 'C' || !ft_strcmp(bag->length_modifier, "l")
+			|| !ft_strcmp(bag->length_modifier, "ll"))
+		c = (wchar_t)va_arg(args, void *);
 	else
-	{
-		while (--bag->width > 0)
-		{
-			ft_putchar(' ');
-			(*i)++;
-		}
-		ft_putchar(0);
-		*i += 1;
+		c = (char)va_arg(args, void *);
+	if (!c && print_null(bag, i))
 		return ;
-	}
-	str[1] = '\0';
-	if (bag->minus && bag->width > 0)
-		str = pad_right(str, bag->width, pad_character);
-	else if (bag->width > 0)
-		str = pad_left(str, bag->width, pad_character);
-	*i += ft_strlen(str);
-	ft_putstr(str);
+	if (bag->minus && bag->width && (new = ft_strjoin(new, stringerize(c))))
+		new = pad_right(new, bag->width, ' ');
+	else if (bag->width && (new = ft_strjoin(new, stringerize(c))))
+		new = pad_left(new, bag->width, ' ');
+	else
+		new = stringerize(c);
+	*i += ft_strlen(new);
+	ft_putstr(new);
 }

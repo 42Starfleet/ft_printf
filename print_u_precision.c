@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_flags.c                                        :+:      :+:    :+:   */
+/*   print_u_precision.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 20:39:58 by hiroshius         #+#    #+#             */
-/*   Updated: 2018/01/31 02:38:47 by hiroshius        ###   ########.fr       */
+/*   Created: 2018/01/31 02:38:33 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/31 02:38:33 by hiroshius        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-bool	set_flags(t_bag *bag, char c)
+char	*print_u_precision(t_bag *bag, char *input)
 {
-	if (c == '#')
-		bag->number_sign = 1;
-	if (c == '-')
-		bag->minus = 1;
-	if (c == '+')
-		bag->plus = 1;
-	if (c == ' ')
-		bag->space = 1;
-	if (c == '0')
-		bag->zero = 1;
-	return (1);
+	if (bag->period)
+	{
+		if (bag->precision == 0 && number_cmp(input, "0") == 0)
+		{
+			input = "";
+			return (input);
+		}
+		if (number_cmp(input, "0") < 0)
+		{
+			input = input + 1;
+			input = pad_left(input, bag->precision, '0');
+			input = ft_strjoin("-", input);
+		}
+		else
+			input = pad_left(input, bag->precision, '0');
+		bag->zero = 0;
+	}
+	return (input);
 }

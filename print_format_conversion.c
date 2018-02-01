@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_format_conversion.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 02:38:13 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/31 02:38:13 by hiroshius        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -65,20 +77,26 @@
 
 void	print_format_conversion(t_bag *bag, va_list args, int *i)
 {
-	if (bag->format_conversion == 's' || bag->format_conversion == 'S')
+	if (bag->format_conversion == 's'
+			&& ft_strcmp(bag->length_modifier, "l"))
 		print_s(bag, args, i);
-	if (bag->format_conversion == 'p')
+	else if (bag->format_conversion == 'S'
+			|| (bag->format_conversion == 's'
+				&& !ft_strcmp(bag->length_modifier, "l")))
+		print_s_upper(bag, args, i);
+	else if (bag->format_conversion == 'p')
 		print_p(bag, args, i);
-	if (bag->format_conversion == 'd' || bag->format_conversion == 'D' || bag->format_conversion == 'i')
+	else if (bag->format_conversion == 'd' || bag->format_conversion == 'D' ||
+			bag->format_conversion == 'i')
 		print_d(bag, args, i);
-	if (bag->format_conversion == 'o' || bag->format_conversion == 'O')
+	else if (bag->format_conversion == 'o' || bag->format_conversion == 'O')
 		print_o(bag, args, i);
-	if (bag->format_conversion == 'u' || bag->format_conversion == 'U')
+	else if (bag->format_conversion == 'u' || bag->format_conversion == 'U')
 		print_u(bag, args, i);
-	if (bag->format_conversion == 'x' || bag->format_conversion == 'X')
+	else if (bag->format_conversion == 'x' || bag->format_conversion == 'X')
 		print_x(bag, args, i);
-	if (bag->format_conversion == 'c' || bag->format_conversion == 'C')
+	else if (bag->format_conversion == 'c' || bag->format_conversion == 'C')
 		print_c(bag, args, i);
-	if (bag->format_conversion == '%')
-		print_percent(bag, args, i);
+	else if (bag->format_conversion == '%')
+		print_percent(bag, i);
 }

@@ -1,5 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 02:45:37 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/31 03:10:53 by hiroshius        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define KNRM		"\x1B[0m"
+# define RED		"\x1B[31m"
+# define GREEN		"\x1B[32m"
+# define YELLOW		"\x1B[33m"
+# define BLUE		"\x1B[34m"
+# define MAGNETA	"\x1B[35m"
+# define CYAN		"\x1B[96m"
+# define WHITE		"\x1B[37m"
+# define RESET		"\033[0m"
 # define HEXADECIMAL_UPPERCASE "0123456789ABCDEF"
 # define HEXADECIMAL_LOWERCASE "0123456789abcdef"
 # define OCTAL "01234567"
@@ -26,14 +47,13 @@ typedef struct	s_bag
 }				t_bag;
 
 int				ft_printf(char *format, ...);
-// Set return type to t_bag * for unit testing purposes.
-//t_bag			*handle_percent(char **format, va_list args, int *i);
 void			handle_percent(char **format, va_list args, int *i);
 char			**set_length_modifiers(void);
 bool			in_flags(t_bag *bag, char c);
 bool			set_flags(t_bag *bag, char c);
 bool			in_format_conversions(char c);
-bool			in_length_modifiers(char **, char *);
+bool			in_length_modifiers(char **length_modifiers,
+				char *length_modifier);
 char			**set_length_modifiers_array(void);
 bool			in_minimum_field_width(char c);
 bool			in_precision(char c);
@@ -44,6 +64,7 @@ char			*pad_right(char *str, int n, char c);
 char			*cut_left(char *str, int n);
 char			*cut_right(char *str, int n);
 void			print_s(t_bag *bag, va_list args, int *i);
+void			print_s_upper(t_bag *bag, va_list args, int *i);
 void			print_p(t_bag *bag, va_list args, int *i);
 void			print_d(t_bag *bag, va_list args, int *i);
 void			print_i(t_bag *bag, va_list args, int *i);
@@ -51,10 +72,34 @@ void			print_o(t_bag *bag, va_list args, int *i);
 void			print_u(t_bag *bag, va_list args, int *i);
 void			print_x(t_bag *bag, va_list args, int *i);
 void			print_c(t_bag *bag, va_list args, int *i);
-void			print_percent(t_bag *bag, va_list args, int *i);
+char			*print_d_plus(t_bag *bag, char *input);
+char			*print_d_space(t_bag *bag, char *input);
+char			*print_d_width(t_bag *bag, char *input);
+char			*print_d_precision(t_bag *bag, char *input);
+char			*print_o_plus(t_bag *bag, char *input);
+char			*print_o_space(t_bag *bag, char *input);
+char			*print_o_width(t_bag *bag, char *input);
+char			*print_o_precision(t_bag *bag, char *input);
+char			*print_o_number_sign(t_bag *bag, char *input);
+char			*print_u_plus(t_bag *bag, char *input);
+char			*print_u_space(t_bag *bag, char *input);
+char			*print_u_width(t_bag *bag, char *input);
+char			*print_u_precision(t_bag *bag, char *input);
+char			*print_x_plus(t_bag *bag, char *input);
+char			*print_x_space(t_bag *bag, char *input);
+char			*print_x_width(t_bag *bag, char *input);
+char			*print_x_precision(t_bag *bag, char *input);
+char			*print_x_number_sign(t_bag *bag, char *input);
+void			print_percent(t_bag *bag, int *i);
 int				power_i(int number, int exponent);
 long			power_l(long number, int exponent);
 char			*ft_ltoa(long n);
+void			truncate_zeros(char **str);
+int				number_cmp(char *str1, char *str2);
+bool			zeroed(char *str);
+char			*stringerize(char c);
+void			test_printfd(void);
 char			*ft_intmax_toa(intmax_t num);
 
+bool			g_is_print_p;
 #endif

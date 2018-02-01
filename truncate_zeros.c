@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   in_format_conversions.c                            :+:      :+:    :+:   */
+/*   truncate_zeros.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: lilam <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/31 02:37:48 by hiroshius         #+#    #+#             */
-/*   Updated: 2018/01/31 02:37:49 by hiroshius        ###   ########.fr       */
+/*   Created: 2018/01/15 09:06:41 by lilam             #+#    #+#             */
+/*   Updated: 2018/01/31 02:38:59 by hiroshius        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-bool	in_format_conversions(char c)
+void		truncate_zeros(char **str)
 {
-	char *all_format_conversions;
+	int		i;
+	int		sign;
+	char	*temp;
 
-	all_format_conversions = "sSpdDioOuUxXcC%";
-	while (*all_format_conversions)
+	i = 0;
+	if (*str[i] == '-')
 	{
-		if (c == *all_format_conversions)
-			return (1);
-		all_format_conversions++;
+		sign = -1;
+		i++;
 	}
-	return (0);
+	while ((*str)[i] && (*str)[i] == '0')
+		i++;
+	temp = *str;
+	if (sign == -1)
+		*str = ft_strjoin("-", *str + i);
+	else
+		*str = ft_strdup(*str + i);
+	free(temp);
 }
