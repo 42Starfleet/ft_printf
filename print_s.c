@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_s.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 02:38:27 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/31 02:38:28 by hiroshius        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 /*
@@ -63,42 +75,60 @@
 **	number for a signed format. A "+" overrides a space if both are used.
 */
 
-void	print_s(t_bag *bag, va_list args, int *i)
+void			print_s_upper(t_bag *bag, va_list args, int *i)
 {
-	char pad_character;
-	char *str;
-	wchar_t *str_wide;
+	wchar_t		*str;
+	int			x;
+	int			length;
+	char		*new;
 
-	pad_character = bag->zero ? '0' : ' ';
-	if (bag->format_conversion  == 's')
-		str = (char *)va_arg(args, void *);
-	else if (bag->format_conversion == 'S')
-		str_wide = (wchar_t *)va_arg(args, void *);
-	if (!str)
+	str = (wchar_t *)va_arg(args, void *);
+	length = 0;
+	new = "";
+	if (str && !(x = 0))
 	{
-		str = "(null)";
-		ft_putstr(str);
-		*i += 6;
-		return ;
+		while (str[x++])
+			length++;
+		while (*str)
+			new = ft_strjoin(new, stringerize((char)(*str++)));
+		if (bag->precision < length && bag->period)
+			new = cut_right(new, length - bag->precision);
+		if (!bag->minus)
+			new = pad_left(new, bag->width, ' ');
+		else
+			new = pad_right(new, bag->width, ' ');
+		*i += ft_strlen(new);
+		ft_putstr(new);
 	}
-	if (str_wide)
-		str = (char *)str_wide;
-	if (bag->minus && bag->width && bag->precision)
+	else
+		(*i) += ft_printf("(null)");
+}
+
+void			print_s(t_bag *bag, va_list args, int *i)
+{
+	char		*str;
+	int			x;
+	int			length;
+	char		*new;
+
+	str = (char *)va_arg(args, void *);
+	length = 0;
+	new = "";
+	if (str && !(x = 0))
 	{
-		str = cut_right(str, bag->precision);
-		str = pad_right(str, bag->width, pad_character);
+		while (str[x++])
+			length++;
+		while (*str)
+			new = ft_strjoin(new, stringerize(*str++));
+		if (bag->precision < length && bag->period)
+			new = cut_right(new, length - bag->precision);
+		if (!bag->minus)
+			new = pad_left(new, bag->width, ' ');
+		else
+			new = pad_right(new, bag->width, ' ');
+		*i += ft_strlen(new);
+		ft_putstr(new);
 	}
-	else if (bag->width && bag->period && bag->precision)
-	{
-		str = cut_right(str, bag->precision);
-		str = pad_left(str, bag->width, pad_character);
-	}
-	else if (bag->minus && bag->width)
-		str = pad_right(str, bag->width, pad_character);
-	else if (bag->precision)
-		str = cut_right(str, bag->precision);
-	else if (bag->width)
-		str = pad_left(str, bag->width, pad_character);
-	*i += ft_strlen(str);
-	ft_putstr(str);
+	else
+		(*i) += ft_printf("(null)");
 }

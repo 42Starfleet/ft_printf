@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_percent.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hiroshiusui <marvin@42.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/31 03:00:28 by hiroshius         #+#    #+#             */
+/*   Updated: 2018/01/31 03:03:06 by hiroshius        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+#define INP in_precision(*format_pointer)
 
 /*
 **	Source: https://www-user.tu-chemnitz.de/~heha/petzold/ch02c.htm
@@ -102,8 +115,6 @@ static void	parse_length_modifier(t_bag *bag, char **format,
 	}
 }
 
-// t_bag return type is for unit_tests in main.c with handle_percent only
-//t_bag		*handle_percent(char **format, va_list args, int *i)
 void		handle_percent(char **format, va_list args, int *i)
 {
 	char	**length_modifiers;
@@ -120,17 +131,15 @@ void		handle_percent(char **format, va_list args, int *i)
 		bag->width = ft_atoi(format_pointer);
 	while (in_minimum_field_width(*format_pointer))
 		format_pointer++;
-	if (*format_pointer == '.' && (bag->period = 1) && format_pointer++)
-		if (in_precision(*format_pointer))
-		{
-			bag->precision = ft_atoi(format_pointer);
-			while (in_precision(*format_pointer))
-				format_pointer++;
-		}
+	if (*format_pointer == '.' && (bag->period = 1) && format_pointer++ && INP)
+	{
+		bag->precision = ft_atoi(format_pointer);
+		while (in_precision(*format_pointer))
+			format_pointer++;
+	}
 	parse_length_modifier(bag, &format_pointer, length_modifiers);
 	if (in_format_conversions(*format_pointer))
 		bag->format_conversion = *format_pointer++;
 	print_format_conversion(bag, args, i);
 	*format = format_pointer;
-//	return (bag);
 }
