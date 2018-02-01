@@ -6,13 +6,12 @@
 #    By: husui <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 10:04:33 by husui             #+#    #+#              #
-#    Updated: 2018/01/31 21:12:12 by scamargo         ###   ########.fr        #
+#    Updated: 2018/02/01 14:40:01 by scamargo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 TEST = ft_printf.out
-LIB	= libft.a
 SRCS = cut_left.c cut_right.c ft_printf.c handle_percent.c in_flags.c in_format_conversions.c \
 	   in_length_modifiers.c in_minimum_field_width.c in_precision.c initialize_t_bag_variables.c \
 	   pad_left.c pad_right.c print_c.c print_d.c print_format_conversion.c print_o.c\
@@ -24,23 +23,18 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME) 
 
-$(NAME): $(LIB)
-	@gcc -c $(SRCS)
-	@ar -q $(NAME) *.o
-
-$(LIB):
+$(NAME):
 	@gcc -c -Wall -Werror -Wextra libft/*.c -I libft/libft.h
-	@ar -q libft/$(LIB) *.o
-	@cp libft/$(LIB) .
+	@gcc -c $(SRCS)
+	@ar rc $(NAME) *.o
 
 test:
-	@gcc -g -L. -lftprintf -lft $(SRCS) main.c -o $(TEST)
+	@gcc -g -L. -lftprintf $(SRCS) main.c -o $(TEST)
  
 clean:
 	@rm -rf *.o libft/*.o
 
 fclean: clean
 	@rm -rf $(NAME)
-	@rm -rf $(LIB)
 
-re: fclean $(LIB) all
+re: fclean all
