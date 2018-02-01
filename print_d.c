@@ -11,14 +11,15 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	int			p;
 
 	num = va_arg(args, intmax_t);
-	if (ft_strlen(bag->length_modifier) == 0)
+	if (!ft_strcmp(bag->length_modifier, "l") ||
+		bag->format_conversion == 'C')
+		num = (long)num;
+	else if (ft_strlen(bag->length_modifier) == 0)
 		num = (int)num;
 	else if (!ft_strcmp(bag->length_modifier, "h"))
 		num = (short)num;
 	else if (!ft_strcmp(bag->length_modifier, "hh"))
 		num = (signed char)num;
-	else if (!ft_strcmp(bag->length_modifier, "l")) //TODO: make sure 'D' is processed like 'ld'
-		num = (long)num;
 	else if (!ft_strcmp(bag->length_modifier, "ll") || 
 			ft_strcmp(bag->length_modifier, "z"))
 		num = (long long)num;
