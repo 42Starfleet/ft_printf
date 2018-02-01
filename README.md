@@ -7,3 +7,8 @@ All exported functions need to be placed in their own file name, with helper fun
 To make the Github integration process easier, GitKraken can help quite a bit. 
 
 Read open source code and try to mimic their methods of maintaining a high level of code readability and modularity. 
+
+HOW TO RUN:
+1. Go to the root directory.
+2. Use
+make re; gcc -L. -lftprintf *.c; ./a.out; rm a.out
