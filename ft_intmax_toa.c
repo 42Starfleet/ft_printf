@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 17:04:08 by scamargo          #+#    #+#             */
-/*   Updated: 2018/01/30 17:08:14 by scamargo         ###   ########.fr       */
+/*   Updated: 2018/02/01 15:41:18 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int		num_len(intmax_t num)
 {
 	int len;
 	
+	len = 0;
 	while ((num = num / 10))
 		len++;
 	return (len);
@@ -39,13 +40,11 @@ char			*ft_intmax_toa(intmax_t num)
 	int len;
 	char	*str;
 	char	*str_copy;
-	// get the number of chars in num
 	len = num_len(num);
 	len += (num < 0) ? 1 : 0;
 	if(!(str = ft_memalloc(len + 1)))
 		return (0);
 	str_copy = str;
-	// call recursive function to convert num to str
 	if (num == INT64_MIN)
 	{
 		*str_copy++ = '-';
