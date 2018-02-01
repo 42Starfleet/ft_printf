@@ -6,7 +6,7 @@
 #    By: husui <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 10:04:33 by husui             #+#    #+#              #
-#    Updated: 2018/02/01 14:22:59 by scamargo         ###   ########.fr        #
+#    Updated: 2018/02/01 14:24:24 by scamargo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): $(LIB)
 	@gcc -c $(SRCS)
-	@ar -q $(NAME) $(OBJS)
+	@ar -q $(NAME) *.o
 
 $(LIB):
 	@gcc -c -Wall -Werror -Wextra libft/*.c -I libft/libft.h
