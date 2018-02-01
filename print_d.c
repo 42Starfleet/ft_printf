@@ -5,6 +5,7 @@
 void	print_d(t_bag *bag, va_list args, int *i)
 {
 	char		*str;
+	char		*str_orig;
 	int			len;
 	int			n;
 	intmax_t	num;
@@ -23,7 +24,8 @@ void	print_d(t_bag *bag, va_list args, int *i)
 	else if (!ft_strcmp(bag->length_modifier, "ll") || 
 			ft_strcmp(bag->length_modifier, "z"))
 		num = (long long)num;
-	str = ft_intmax_toa(num); 
+	str = ft_intmax_toa(num);
+	str_orig = str;
 	len = ft_strlen(str);
 	len -= (num < 0) ? 1 : 0;
 	p = (bag->precision - len > 0) ? bag->precision - len : 0;
@@ -80,5 +82,6 @@ void	print_d(t_bag *bag, va_list args, int *i)
 		(*i)++;
 	}
 	*i += len;
+	free(str_orig);
 	// TODO: see why you cant free str
 }
