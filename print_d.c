@@ -12,7 +12,7 @@ void	print_d(t_bag *bag, va_list args, int *i)
 
 	num = va_arg(args, intmax_t);
 	if (!ft_strcmp(bag->length_modifier, "l") ||
-		bag->format_conversion == 'C')
+		bag->format_conversion == 'D')
 		num = (long)num;
 	else if (ft_strlen(bag->length_modifier) == 0)
 		num = (int)num;
