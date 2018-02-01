@@ -12,13 +12,25 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define KNRM		"\x1B[0m"
+# define RED		"\x1B[31m"
+# define GREEN		"\x1B[32m"
+# define YELLOW		"\x1B[33m"
+# define BLUE		"\x1B[34m"
+# define MAGNETA	"\x1B[35m"
+# define CYAN		"\x1B[96m"
+# define WHITE		"\x1B[37m"
+# define RESET		"\033[0m"
 # define HEXADECIMAL_UPPERCASE "0123456789ABCDEF"
 # define HEXADECIMAL_LOWERCASE "0123456789abcdef"
 # define OCTAL "01234567"
 # include <stdarg.h>
+# include <string.h>
 # include <stdbool.h>
 # include "libft/libft.h"
+# include <locale.h>
 # include <wchar.h>
+# include <stdio.h>
 
 typedef struct	s_bag
 {
