@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/01 16:08:27 by scamargo          #+#    #+#             */
-/*   Updated: 2018/02/01 16:35:56 by scamargo         ###   ########.fr       */
+/*   Updated: 2018/02/01 17:21:31 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,51 @@ static void		add_char_once(char c, int *p_i)
 	(*p_i)++;
 }
 
-void	print_d(t_bag *b, va_list args, int *i)
+static int		set_n(int *p_len, t_bag *b, intmax_t num, int *p_p)
+{
+	int n;
+
+	*p_len -= (num < 0) ? 1 : 0;
+	*p_p = (b->precision - *p_len > 0) ? b->precision - *p_len : 0;
+	*p_len = (num == 0 && b->period && b->precision == 0) ? 0 : *p_len;
+	n = b->width - *p_len - *p_p;
+	n -= (b->plus || b->space || num < 0) ? 1 : 0;
+	return (n);
+}
+
+static void		print_chars(intmax_t num, char *str, t_bag *b, int *i)
+{
+	int n;
+	int len;
+	int p;
+
+	len = ft_strlen(str);
+	n = set_n(&len, b, num, &p);
+	if (!b->minus && (b->precision || !b->zero))
+		add_char_n_times(' ', &n, i);
+	if (num < 0)
+	{
+		add_char_once('-', i);
+		str++;
+	}
+	else if (b->plus)
+		add_char_once('+', i);
+	else if (b->space)
+		add_char_once(' ', i);
+	if (b->precision)
+		add_char_n_times('0', &p, i);
+	else if (!b->minus && b->zero)
+		add_char_n_times('0', &n, i);
+	write(1, str, len);
+	add_char_n_times(' ', &n, i);
+	*i += len;
+}
+
+void			print_d(t_bag *b, va_list args, int *i)
 {
 	char		*str;
 	char		*str_orig;
 	int			len;
-	int			n;
 	intmax_t	num;
 	int			p;
 
@@ -47,32 +86,6 @@ void	print_d(t_bag *b, va_list args, int *i)
 	num = (!ft_strcmp(b->length_modifier, "hh")) ? (signed char)num : num;
 	str = ft_intmax_toa(num);
 	str_orig = str;
-	len = ft_strlen(str);
-	len -= (num < 0) ? 1 : 0;
-	p = (b->precision - len > 0) ? b->precision - len : 0;
-	len = (num == 0 && b->period && b->precision == 0) ? 0 : len;
-	n = b->width - len - p;
-	n -= (b->plus || b->space || num < 0) ? 1 : 0;
-	if (!b->minus && (b->precision || !b->zero))
-		add_char_n_times(' ', &n, i);
-	if (num < 0)
-	{
-		add_char_once('-', i);
-		str++;
-	}
-	else
-	{
-		if (b->plus)
-			add_char_once('+', i);
-		else if (b->space)
-			add_char_once(' ', i);
-	}
-	if (b->precision)
-		add_char_n_times('0', &p, i);
-	else if (!b->minus && b->zero)
-		add_char_n_times('0', &n, i);
-	write(1, str, len);
-	add_char_n_times(' ', &n, i);
-	*i += len;
+	print_chars(num, str, b, i);
 	free(str_orig);
 }
