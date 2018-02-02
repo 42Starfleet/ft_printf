@@ -6,13 +6,28 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/01 16:08:27 by scamargo          #+#    #+#             */
-/*   Updated: 2018/02/01 16:22:48 by scamargo         ###   ########.fr       */
+/*   Updated: 2018/02/01 16:35:56 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 #include <inttypes.h>
+
+static void		add_char_n_times(char c, int *p_n, int *p_i)
+{
+	while ((*p_n)-- > 0)
+	{
+		ft_putchar(c);
+		(*p_i)++;
+	}
+}
+
+static void		add_char_once(char c, int *p_i)
+{
+	ft_putchar(c);
+	(*p_i)++;
+}
 
 void	print_d(t_bag *b, va_list args, int *i)
 {
@@ -39,54 +54,25 @@ void	print_d(t_bag *b, va_list args, int *i)
 	n = b->width - len - p;
 	n -= (b->plus || b->space || num < 0) ? 1 : 0;
 	if (!b->minus && (b->precision || !b->zero))
-	{
-		while (n-- > 0)
-		{
-			ft_putchar(' ');
-			(*i)++;
-		}
-	}
+		add_char_n_times(' ', &n, i);
 	if (num < 0)
 	{
-		ft_putchar('-');
+		add_char_once('-', i);
 		str++;
-		(*i)++;
 	}
 	else
 	{
 		if (b->plus)
-		{
-			ft_putchar('+');
-			(*i)++;
-		}
+			add_char_once('+', i);
 		else if (b->space)
-		{
-			ft_putchar(' ');
-			(*i)++;
-		}
+			add_char_once(' ', i);
 	}
 	if (b->precision)
-	{
-		while (p-- > 0)
-		{
-			ft_putchar('0');
-			(*i)++;
-		}
-	}
+		add_char_n_times('0', &p, i);
 	else if (!b->minus && b->zero)
-	{
-		while (n-- > 0)
-		{
-			ft_putchar('0');
-			(*i)++;
-		}
-	}
+		add_char_n_times('0', &n, i);
 	write(1, str, len);
-	while (n-- > 0)
-	{
-		ft_putchar(' ');
-		(*i)++;
-	}
+	add_char_n_times(' ', &n, i);
 	*i += len;
 	free(str_orig);
 }
